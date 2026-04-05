@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       if (Date.now() > cookieParamValue.expires) {
         cookieParams = JSON.stringify({
           id: cookieParamValue.id,
-          remaining: 9,
+          remaining: process.env.REMAINING_QUOTA ? Number(process.env.REMAINING_QUOTA) : 9,
           expires: Date.now() + 24 * 60 * 60 * 1000,
         });
       } else if (cookieParamValue.remaining <= 0) {
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       cookieParams = JSON.stringify({
         id: uuidv4(),
         //剩余次数
-        remaining: 9,
+        remaining: process.env.REMAINING_QUOTA ? Number(process.env.REMAINING_QUOTA) : 9,
         //过期时间，24小时后
         expires: Date.now() + 24 * 60 * 60 * 1000,
       });

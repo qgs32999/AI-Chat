@@ -8,6 +8,6 @@ export async function getRemaining() {
     const remaining = cookieValue.remaining;
     return remaining;
   }else {
-    return 5;
+    return process.env.REMAINING_QUOTA ? Number(process.env.REMAINING_QUOTA) + 1 : 10;
   }
 }
