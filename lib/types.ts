@@ -18,3 +18,9 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
+
+export interface CookieParams {
+  id: string;
+  remaining: number;
+  expires: number;
+}
